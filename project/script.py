@@ -14,7 +14,7 @@ with open("ldap_export.csv",'r') as ldap_export:
     for row in ldap_data:
         ldap_employees[row["employeeNumber"]]=row #Puts each line from csv file in the ldap_employees using the employeeNumber as key
 
-tableData = [] #Create the list which will be used to make the table with the exports
+tableData = [] #Create the list which will be used to make the table with the reports
 tableHeaders = ["ID","Name","Status"]#Define the table headers
 with open("employees_data.txt","r") as employees_export:
     employees_data = csv.DictReader(employees_export) #Opens the file with the employees exported data and puts in a dictionary
