@@ -2,9 +2,10 @@
 #Joao Pedro da Matta Galera da Silva
 
 import csv
+from tabulate import tabulate #the tabulate library must be installed to run this code with "pip install tabulate"
 
 print("Woolamaloo Syncronization Report")
-print("--------------------------------")
+print("--------------------------------\n")
 
 ldap_employees = {} #Create the dictionary ldap_employees
 with open("ldap_export.csv",'r') as ldap_export:
@@ -13,7 +14,8 @@ with open("ldap_export.csv",'r') as ldap_export:
     for row in ldap_data:
         ldap_employees[row["employeeNumber"]]=row #Puts each line from csv file in the ldap_employees using the employeeNumber as key
 
-tableData = [] #Create a list which will be used to make the table with the exports
+tableData = [] #Create the list which will be used to make the table with the exports
+tableHeaders = ["ID","Name","Status"]#Define the table headers
 with open("employees_data.txt","r") as employees_export:
     employees_data = csv.DictReader(employees_export) #Opens the file with the employees exported data and puts in a dictionary
 
@@ -29,5 +31,4 @@ with open("employees_data.txt","r") as employees_export:
             elif row["position"] != ldap_employees[row["id"]]["position"]: #And position in the LDAP is distinct from the employees system
                 tableData.append([row["id"],row["name"],"Changed position. Was " + ldap_employees[row["id"]]["position"] + " and now is " + row["position"]]) #Add an item on the tableData list with the report for this employee
 
-for i in tableData:
-    print(i[0] + "  " + i[1] + "  " + i[2])
+print(tabulate(tableData,tableHeaders)) #Print the table using the "Tabulate library"
