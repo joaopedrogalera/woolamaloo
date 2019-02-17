@@ -14,22 +14,16 @@ with open("ldap_export.csv",'r') as ldap_export:
         ldap_employees[row["employeeNumber"]]=row
 
 with open("employees_data.txt","r") as employees_data: #Open the file with the Employees data
-    employees_data.readline() #skip 1st line
-    employees_row = employees_data.readline()
+    employees_row = csv.DictReader(employees_data)
 
-    while len(employees_row)!=0:
-        employees_row_fields = employees_row.split(',')
-
-
-        if len(employees_row_fields)==6:
-            if employees_row_fields[0] in ldap_employees:
-                print(employees_row_fields[1] + " worked at Woolamaloo from " + employees_row_fields[2] + " to " + employees_row_fields[2])
-        elif len(employees_row_fields)==5:
-            if not employees_row_fields[0] in ldap_employees:
-                print(employees_row_fields[1] + " Started to work at Woolamaloo on " + employees_row_fields[2])
-            elif employees_row_fields[3] != ldap_employees[employees_row_fields[0]]["department"]:
-                print(employees_row_fields[1] + " changed department. Was " + ldap_employees[employees_row_fields[0]]["department"] + " and now is " + employees_row_fields[3])
-            elif employees_row_fields[4].rstrip('\n') != ldap_employees[employees_row_fields[0]]["position"]:
-                print(employees_row_fields[1] + " changed position. Was " + ldap_employees[employees_row_fields[0]]["position"] + " and now is " + employees_row_fields[4].rstrip('\n'))
-        print("-----------------------------")
-        employees_row = employees_data.readline()
+    for row in employees_row:
+        if len(row["demission_date"])!=0:
+            if row["id"] in ldap_employees:
+                print(row["name"] + " worked at Woolamaloo from " + row["admission_date"] + " to " + row["demission_date"])
+        else:
+            if not row["id"] in ldap_employees:
+                print(row["name"] + " Started to work at Woolamaloo on " + row["admission_date"])
+            elif row["department"] != ldap_employees[row["id"]]["department"]:
+                print(row["name"] + " changed department. Was " + ldap_employees[row["id"]]["department"] + " and now is " + row["department"])
+            elif row["position"] != ldap_employees[row["id"]]["position"]:
+                print(row["name"] + " changed position. Was " + ldap_employees[row["id"]]["position"] + " and now is " + row["position"])
