@@ -1,4 +1,4 @@
-#How to run the script
+# How to run the script
 First of all, the script, written in Python, depends on the library "Tabulate" to show the reports in a organized way, so you must install it with "pip install tabulate".
 The csv file with the data from LDAP must be called ldap_export.csv and the file with the employees system data, employees_data.txt.
 you can run the program with "python script.py"
