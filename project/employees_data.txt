@@ -1,8 +1,8 @@
 id,name,admission_date,demission_date,department,position
-1234,Aldo Zanchertine,13/11/1991,,Mathematics,Professor
+1234,Aldo Zanchertine,13/11/1991,Mathematics,Professor
 4321,Rufus Parket,11/05/1996,14/01/2019,Transportation,Driver
 1111,Count Olaf,01/06/1990,13/09/2011,Arts,Actor
 1458,Violet Baudelaire,14/10/2005,General Services,Inventor
 1832,Klaus Baudelaire,20/05/2007,Library,Librarian
 1516,Sunny Baudelaire,23/02/2018,Kitchen,chef
-1832,Rory Gilmore,11/05/2007,Communications,Journalist
+1942,Rory Gilmore,11/05/2007,Communications,Journalist
